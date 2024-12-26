@@ -9,7 +9,7 @@
     $width: map.get(var.$breakpoints, $bp);
 
     @if $type == max {
-      $width: $width 0.02px;
+      $width: $width - 0.02px;
     }
 
     @media only screen and (#{$type}-width: $width) {
@@ -19,13 +19,12 @@
           (min-resolution: 2dppx) {
           @content;
         }
-      }
-      else {
+      } @else {
         @content;
       }
     }
   } @else {
-    @error '';
+    @error "";
   }
 }
 
@@ -51,10 +50,10 @@
 
   &::-webkit-scrollbar-track {
     background-color: transparent;
-    border-radius: 104px;
+    border-radius: 100px;
 
     &:hover {
-      background-color: rgba(#fff, 30, 3);
+      background-color: rgba(#fff, 0.3);
     }
   }
 
@@ -73,6 +72,7 @@
 @mixin ease($ease, $properties...) {
   @if map.has-key(var.$easings, $ease) {
     $ease: map.get(var.$easings, $ease);
+
     transition: $ease;
   } @else {
     @warn "The variable $ease is not defined";
